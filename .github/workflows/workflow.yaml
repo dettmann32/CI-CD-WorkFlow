@@ -1,19 +1,27 @@
 name: Continuos Integration
 
-on: pull_request
+# a palavra chave "on" recebe o evento que ira disparar o workflow
+# da pipeline
+on: [pull_request, push]  #Também é possivel especificar mais ainda o processo. Por Ex.:
+                              #on:
+                                 #pull_request:
+                                    #branches:
+                                      #['main'] #apenas na branche "main" sera executado o workflow
 
+#são os passo a passo do workflow
 jobs:
-  continuos-integration:
-    runs-on: ubuntu-latest
+  continuos-integration: # <= job
+    runs-on: ubuntu-latest # especifica o ambiente em que o workflow ira executar
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Using Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.
-      - name: run install, build and test
+      - uses: action/checout@v4 #clona o repositorio para maquina virtual do githubactions
+      - name: Using node.js
+        uses: actions/setup-node@v2 #instala o node
+        with: #defini variaveis dentro do actions
+          node-version: 22.x
+      - name: run install, test and build
         run: |
           npm install
-          npm run build 
           npm run test
+          npm run build
+      

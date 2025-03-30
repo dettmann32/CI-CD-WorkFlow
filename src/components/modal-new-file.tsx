@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 
+
 import { useCreateFile } from "../hooks/useCreateFile"
 import { generateSlug } from "../utils/generate-slug"
 import { When } from "./when"
@@ -130,7 +131,7 @@ export function ModalNewFile(props: Props){
         setTitle('')
         props.handleClose()
         navigate(`/editor/${data.slug}`)
-    }, [data])
+    }, [navigate, props, data])
 
     if(isLoading) return <LoadingScreen />
 
