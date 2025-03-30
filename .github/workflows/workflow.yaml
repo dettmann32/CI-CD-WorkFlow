@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest # especifica o ambiente em que o workflow ira executar
 
     steps:
-      - uses: action/checout@v4 #clona o repositorio para maquina virtual do githubactions
+      - uses: action/checkout@v4 #clona o repositorio para maquina virtual do githubactions
       - name: Using node.js
         uses: actions/setup-node@v2 #instala o node
         with: #defini variaveis dentro do actions
